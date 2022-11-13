@@ -146,5 +146,5 @@ pipelines:
             # Run task
             - task: $TASK_NAME@v$TASK_VERSION
               input:
-                version: "19"
+                version: "19.0.0"
             - node -v

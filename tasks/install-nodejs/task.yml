@@ -7,4 +7,6 @@ input:
   - name: version
     description: Version of nodejs to be installed.
 execution:
-  - curl -fsSL https://rpm.nodesource.com/setup_$IN_version.x | sudo bash -
+  - curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
+  - nvm install $version
+  - nvm use $version
