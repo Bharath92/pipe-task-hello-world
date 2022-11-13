@@ -145,7 +145,6 @@ pipelines:
           onExecute:
             # Run task
             - task: $TASK_NAME@v$TASK_VERSION
-              id: hello_world_test
               input:
                 version: "19"
             - node -v
