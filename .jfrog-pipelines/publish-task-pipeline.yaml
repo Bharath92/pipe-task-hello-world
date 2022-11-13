@@ -197,7 +197,8 @@ pipelines:
         execution:
           onExecute:
             # Run task
-            - export message="Hi from run number $run_number"
+            - |
+              export message="Hi from run number $run_number, from step: $step_url"
             - task: $TASK_NAME@v$TASK_VERSION
               input:
                 phone-number-id: $int_whatsapp_id
