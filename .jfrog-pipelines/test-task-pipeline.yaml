@@ -29,8 +29,6 @@ pipelines:
       - name: test_task
         type: Bash
         configuration:
-          inputResources:
-            - name: hello_world_task_gitrepo
           integrations:
             - name: {{ .Values.artIntegration }}
         execution:
