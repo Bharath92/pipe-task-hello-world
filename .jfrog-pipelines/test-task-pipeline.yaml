@@ -75,7 +75,7 @@ pipelines:
             - name: whatsapp
         execution:
           onExecute:
-            - task: $TASK_NAME@v0.0.25
+            - task: whatsapp-task@v0.0.25
               input:
                 phone-number-id: "$int_whatsapp_phone_number_id"
                 token: "$int_whatsapp_token"
