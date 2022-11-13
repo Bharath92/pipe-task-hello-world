@@ -1,0 +1,17 @@
+name: whatsapp-task
+description: Install
+source: github.com/bharath92/pipelines-task-hello-world
+labels:
+  - whatsapp
+  - notification
+input:
+  - name: phone-number-id
+    description: Whatsapp phone number id
+  - name: token
+    description: Whatsapp token
+  - name: to
+    description: Comma separated numbers to send messages to
+  - name: message
+    description: Message to send to consumer
+execution:
+  - node16 src/index.js

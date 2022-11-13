@@ -148,3 +148,59 @@ pipelines:
               input:
                 version: "19.0.0"
             - node -v
+  - name: whatsapp_task_publish
+    configuration:
+      jfrogCliVersion: 2
+      runtime:
+        type: image
+        image:
+          custom:
+            name: releases-docker.jfrog.io/jfrog/pipelines-u18node
+            tag: "16"
+            autoPull: true
+      environmentVariables:
+        readOnly:
+          TASK_NAME: whatsapp-task
+          TASK_VERSION: 0.0.${run_number}
+          TASK_REPOSITORY: pipelines-tasks-local
+          RESOLVE_REPO: npm-virtual
+    steps:
+      - name: build_and_publish_task
+        type: Bash
+        configuration:
+          inputResources:
+            - name: hello_world_task_publish_gitrepo
+              trigger: false
+          integrations:
+            - name: {{ .Values.artIntegration }}
+        execution:
+          onExecute:
+            - mkdir $JFROG_STEP_WORKSPACE_DIR/$TASK_NAME
+            - cp -rf $res_hello_world_task_publish_gitrepo_resourcePath/tasks/$TASK_NAME $JFROG_STEP_WORKSPACE_DIR/$TASK_NAME
+            - echo "Task content" && ls -la $JFROG_STEP_WORKSPACE_DIR/$TASK_NAME
+            - task: jfrog/publish-task@v0.0.1
+              id: publish-hello-world
+              input:
+                path: $JFROG_STEP_WORKSPACE_DIR/$TASK_NAME
+                rtRepository: $TASK_REPOSITORY
+                taskName: $TASK_NAME
+                version: $TASK_VERSION
+
+      - name: test_published_task
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: build_and_publish_task
+          integrations:
+            - name: {{ .Values.artIntegration }}
+            - name: whatsapp
+        execution:
+          onExecute:
+            # Run task
+            - export message="Hi from run number $run_number"
+            - task: $TASK_NAME@v$TASK_VERSION
+              input:
+                phone-number-id: $int_whatsapp_id
+                token: $int_whatsapp_token
+                to: $int_whatsapp_number
+                message: $message
