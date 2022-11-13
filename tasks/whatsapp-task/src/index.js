@@ -15,13 +15,14 @@ async function main() {
     },
     data: {
       messaging_product: 'whatsapp',
-      to: "919632845450",
+      to: to,
       text: {
         body: message
       }
     },
     url: 'https://graph.facebook.com/v15.0/' + phoneNumberId + '/messages'
   };
+  console.log(options);
   await axios(options);
 }
 
