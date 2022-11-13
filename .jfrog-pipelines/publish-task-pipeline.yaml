@@ -176,7 +176,7 @@ pipelines:
         execution:
           onExecute:
             - mkdir $JFROG_STEP_WORKSPACE_DIR/$TASK_NAME
-            - cp -rf $res_hello_world_task_publish_gitrepo_resourcePath/tasks/$TASK_NAME/ $JFROG_STEP_WORKSPACE_DIR/$TASK_NAME
+            - cp -rf $res_hello_world_task_publish_gitrepo_resourcePath/tasks/$TASK_NAME/* $JFROG_STEP_WORKSPACE_DIR/$TASK_NAME
             - echo "Task content" && ls -la $JFROG_STEP_WORKSPACE_DIR/$TASK_NAME
             - task: jfrog/publish-task@v0.0.1
               id: publish-hello-world
