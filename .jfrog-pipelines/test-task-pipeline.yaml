@@ -56,3 +56,28 @@ pipelines:
             - cat ./greeting.txt
           onComplete:
             - echo "Step done!"
+  - name: demo_task
+    configuration:
+      jfrogCliVersion: 2
+      runtime:
+        type: image
+        image:
+          custom:
+            name: releases-docker.jfrog.io/jfrog/pipelines-u18node
+            tag: "16"
+            autoPull: true
+    steps:
+      - name: whatsapp_task
+        type: Bash
+        configuration:
+          integrations:
+            - name: {{ .Values.artIntegration }}
+            - name: whatsapp
+        execution:
+          onExecute:
+            - task: $TASK_NAME@v0.0.25
+              input:
+                phone-number-id: "$int_whatsapp_phone_number_id"
+                token: "$int_whatsapp_token"
+                to: "$int_whatsapp_number"
+                message: "Hi from run number $run_number, from step: $step_url"
