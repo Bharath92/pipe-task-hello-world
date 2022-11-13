@@ -204,4 +204,4 @@ pipelines:
                 phone-number-id: "$int_whatsapp_id"
                 token: $int_whatsapp_token
                 to: "$int_whatsapp_number"
-                message: $message
+                message: "$message"
