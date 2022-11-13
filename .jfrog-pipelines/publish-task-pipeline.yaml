@@ -197,8 +197,6 @@ pipelines:
         execution:
           onExecute:
             # Run task
-            - cat $JFROG_STEP_JSON_PATH
-            - printenv
             - |
               export message="Hi from run number $run_number, from step: $step_url"
               export id="$int_whatsapp_phone_number_id"
