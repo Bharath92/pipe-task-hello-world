@@ -201,16 +201,8 @@ pipelines:
         execution:
           onExecute:
             # Run task
-            - |
-              export message="Hi from run number $run_number, from step: $step_url"
-              export id="$int_whatsapp_phone_number_id"
-              export token="$int_whatsapp_token"
-              export number="$int_whatsapp_number"
-              echo $message
-              echo $id
-              echo $token
-              echo $number
-            - task: $TASK_NAME@v0.0.20
+            - echo "Do something"
+            - task: $TASK_NAME@v$TASK_VERSION
               input:
                 phone-number-id: "$id"
                 token: "$token"

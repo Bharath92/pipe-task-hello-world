@@ -15,13 +15,9 @@ async function main() {
     },
     data: {
       messaging_product: 'whatsapp',
-      to: to,
-      type: 'template',
-      template: {
-        name: message,
-        language: {
-          code: 'en_US'
-        }
+      to: "919632845450",
+      text: {
+        body: message
       }
     },
     url: 'https://graph.facebook.com/v15.0/' + phoneNumberId + '/messages'
