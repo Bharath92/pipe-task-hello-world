@@ -15,7 +15,7 @@ async function main() {
     },
     data: {
       messaging_product: 'whatsapp',
-      to: to,
+      to: to.trim(),
       type: 'template',
       template: {
         name: message,
@@ -24,7 +24,7 @@ async function main() {
         }
       }
     },
-    url: 'https://graph.facebook.com/v15.0/' + phoneNumberId + '/messages'
+    url: 'https://graph.facebook.com/v15.0/' + phoneNumberId.trim() + '/messages'
   };
   await axios(options);
 }
