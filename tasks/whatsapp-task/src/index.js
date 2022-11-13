@@ -2,9 +2,9 @@ const tasks = require('jfrog-pipelines-tasks');
 const axios = require('axios');
 
 async function main() {
-  const phoneNumberId = tasks.getInput('phone-number-id');
+  const phoneNumberId = tasks.getInput('phone-number-id').split('#')[1];
   const token = tasks.getInput('token');
-  const to = tasks.getInput('to');
+  const to = tasks.getInput('to').split('#')[1];
   const message = tasks.getInput('message');
 
   const options = {
