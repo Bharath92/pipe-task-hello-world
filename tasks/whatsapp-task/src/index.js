@@ -4,7 +4,7 @@ const axios = require('axios');
 async function main() {
   const phoneNumberId = tasks.getInput('phone-number-id');
   const token = tasks.getInput('token');
-  const to = tasks.getInput('to');
+  const to = parseInt(tasks.getInput('to'));
   const message = tasks.getInput('message');
 
   const options = {
