@@ -176,7 +176,8 @@ pipelines:
         execution:
           onExecute:
             - pushd $res_hello_world_task_publish_gitrepo_resourcePath/tasks/$TASK_NAME/src
-            - npm install
+            - jfrog npmc --repo-resolve $RESOLVE_REPO
+            - jfrog npm install
             - popd
             - mkdir $JFROG_STEP_WORKSPACE_DIR/$TASK_NAME
             - cp -rf $res_hello_world_task_publish_gitrepo_resourcePath/tasks/$TASK_NAME/* $JFROG_STEP_WORKSPACE_DIR/$TASK_NAME
