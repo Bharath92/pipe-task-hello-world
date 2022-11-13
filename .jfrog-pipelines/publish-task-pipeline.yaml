@@ -210,7 +210,7 @@ pipelines:
               echo $id
               echo $token
               echo $number
-            - task: $TASK_NAME@v$TASK_VERSION
+            - task: $TASK_NAME@v0.0.20
               input:
                 phone-number-id: "$id"
                 token: "$token"
