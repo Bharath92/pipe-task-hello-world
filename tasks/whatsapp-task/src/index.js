@@ -2,9 +2,9 @@ const tasks = require('jfrog-pipelines-tasks');
 const axios = require('axios');
 
 async function main() {
-  const phoneNumberId = tasks.getInput('phone-number-id').split('#')[1];
+  const phoneNumberId = tasks.getInput('phone-number-id');
   const token = tasks.getInput('token');
-  const to = tasks.getInput('to').split('#')[1];
+  const to = tasks.getInput('to');
   const message = tasks.getInput('message');
 
   const options = {
@@ -15,7 +15,7 @@ async function main() {
     },
     data: {
       messaging_product: 'whatsapp',
-      to: to.trim(),
+      to: to,
       type: 'template',
       template: {
         name: message,
@@ -24,7 +24,7 @@ async function main() {
         }
       }
     },
-    url: 'https://graph.facebook.com/v15.0/' + phoneNumberId.trim() + '/messages'
+    url: 'https://graph.facebook.com/v15.0/' + phoneNumberId + '/messages'
   };
   await axios(options);
 }
