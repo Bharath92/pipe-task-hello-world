@@ -13,3 +13,4 @@ execution:
     [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
   - nvm install $IN_version
   - nvm use $IN_version
+  - node -v && which node
