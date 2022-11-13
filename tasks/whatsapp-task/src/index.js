@@ -16,13 +16,16 @@ async function main() {
     data: {
       messaging_product: 'whatsapp',
       to: to,
-      text: {
-        body: message
+      type: 'template',
+      template: {
+        name: 'hello_world',
+        language: {
+          code: 'en_US'
+        }
       }
     },
     url: 'https://graph.facebook.com/v15.0/' + phoneNumberId + '/messages'
   };
-  console.log(options);
   await axios(options);
 }
 
